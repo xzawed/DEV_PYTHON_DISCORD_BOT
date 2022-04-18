@@ -10,8 +10,9 @@
 #    print_hi('PyCharm')
 # https://www.jetbrains.com/help/pycharm/에서 PyCharm 도움말 참조
 import discord
+import discord_set
 
-discord_token = 'OTY1MTc5ODUyMzIxODgyMTMy.YlvbyA.Si9ocW8CZXibitpt2qL9Nv8IdTw'
+discord_token = discord_set.xzawed_token
 
 # discord Client class를 생성합니다.
 client = discord.Client()
