@@ -10,20 +10,23 @@
 #      print_hi('PyCharm')
 #   https://www.jetbrains.com/help/pycharm/에서 PyCharm 도움말 참조
 import discord
-#  import discord_set
+import discord_set
 
 #  discord_token = discord_set.xzawed_token
-discord_token = "토큰정보"
+discord_token = discord_set.selmysql('TOKEN')
 
 #  discord Client class를 생성합니다.
 client = discord.Client()
 
 #  event decorator를 설정하고 on_ready function을 할당해줍니다.
+#  on_ready event는 discord bot이 discord에 정상적으로 접속했을 때 실행됩니다.
 @client.event
-async def on_ready():  # on_ready event는 discord bot이 discord에 정상적으로 접속했을 때 실행됩니다.
+async def on_ready():
     print('We have logged in as {}'.format(client))
-    print('Bot name: {}'.format(client.user.name))  # 여기서 client.user는 discord bot을 의미합니다. (제가 아닙니다.)
-    print('Bot ID: {}'.format(client.user.id))  # 여기서 client.user는 discord bot을 의미합니다. (제가 아닙니다.)
+    #  여기서 client.user는 discord bot을 의미합니다. (제가 아닙니다.)
+    print('Bot name: {}'.format(client.user.name))
+    #  여기서 client.user는 discord bot을 의미합니다. (제가 아닙니다.)
+    print('Bot ID: {}'.format(client.user.id))
 
 #  event decorator를 설정하고 on_message function을 할당해줍니다.
 @client.event
@@ -40,17 +43,18 @@ async def on_message(message):
 
 
 #  command를 이용하여 동작하는것을 구현
-@client.command()
-#  The name of the function is the name of the command
+'''
+
+@client.message_command()
 async def square(ctx, arg):
     #  this is the text that follows the command
     print(arg)
     #  ctx.send sends text in chat
     await ctx.send(int(arg) ** 2)
 
-@client.command()
+@client.message_command()
 async def scrabblepoints(ctx, arg):
-    # Key for point values of each letter
+    #  Key for point values of each letter
     score = {"a": 1, "c": 3, "b": 3, "e": 1, "d": 2, "g": 2,
          "f": 4, "i": 1, "h": 4, "k": 5, "j": 8, "m": 3,
          "l": 1, "o": 1, "n": 1, "q": 10, "p": 3, "s": 1,
@@ -58,10 +62,12 @@ async def scrabblepoints(ctx, arg):
              
          "x": 8, "z": 10}
     points = 0
-    # Sum the points for each letter
+    #  Sum the points for each letter
     for c in arg:
         points += score[c]
     await ctx.send(points)
+
+'''
 
 # 위에서 설정한 client class를 token으로 인증하여 실행합니다.
 client.run(discord_token)
