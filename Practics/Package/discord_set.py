@@ -23,14 +23,13 @@ class MariaDB:
 
     #  MariaDB 연결이후 SELECT, UPDATE, INSERT, DELETE 에 해당되는 내용을 호출처리
     def tokenmysql(self):
-        sql = "SELECT TOKEN FROM BOT_TOKEN"
-        self.curs.execute(sql)
-
+        sql = "SELECT TOKEN FROM BOT_TOKEN WHERE COMCD = %s AND BOT_ID = %s; "
+        self.curs.execute(sql,('DISCORD','XZAWED#7332'))
         token_list = self.curs.fetchall()
 
-        #  print(token_list)
+        print(token_list)
         for x in token_list:
-            print(x['TOKEN'])
+            #  print(x['TOKEN'])
             xzawed_token = x['TOKEN']
 
         return xzawed_token
