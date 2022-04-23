@@ -14,8 +14,6 @@ import discord_set
 
 #  discord_token = discord_set.xzawed_token
 discord_token = discord_set.selmysql('TOKEN')
-#  discord_token = ""
-print("TOKEN:"+discord_token)
 
 #  discord Client class를 생성합니다.
 client = discord.Client()
