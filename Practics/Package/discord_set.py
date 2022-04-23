@@ -29,7 +29,7 @@ class MariaDB:
 
         for x in token_list:
             #  print(x['TOKEN'])
-            xzawed_token = x['TOKEN'] aa
+            xzawed_token = x['TOKEN']
 
         return xzawed_token
 
