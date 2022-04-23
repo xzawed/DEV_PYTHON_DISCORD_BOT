@@ -14,6 +14,8 @@ import discord_set
 
 #  discord_token = discord_set.xzawed_token
 discord_token = discord_set.selmysql('TOKEN')
+#  discord_token = ""
+print("TOKEN:"+discord_token)
 
 #  discord Client class를 생성합니다.
 client = discord.Client()
@@ -40,6 +42,7 @@ async def on_message(message):
     #  message를 보낸 사람이 bot이 아니라면 message가 hello로 시작하는 경우 채널에 Hello!라는 글자를 보내라는 뜻입니다.
     elif message.content.startswith('hello'):
         await message.channel.send('Hello!')
+
 
 
 #  command를 이용하여 동작하는것을 구현
