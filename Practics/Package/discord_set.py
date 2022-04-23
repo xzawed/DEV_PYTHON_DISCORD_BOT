@@ -27,7 +27,6 @@ class MariaDB:
         self.curs.execute(sql,('DISCORD','XZAWED#7332'))
         token_list = self.curs.fetchall()
 
-        print(token_list)
         for x in token_list:
             #  print(x['TOKEN'])
             xzawed_token = x['TOKEN']
