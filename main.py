@@ -18,7 +18,7 @@ import Errlog
 
 discord_token = mariadb.selmysql('TOKEN',('DISCORD','XZAWED#7332'))
 
-bot = commands.Bot(command_prefix="$")
+bot = commands.Bot(command_prefix="!")
 
 #  event decorator를 설정하고 on_ready function을 할당해줍니다.
 #  on_ready event는 discord bot이 discord에 정상적으로 접속했을 때 실행됩니다.
