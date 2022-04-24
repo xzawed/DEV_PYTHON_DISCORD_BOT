@@ -10,10 +10,13 @@
 #      print_hi('PyCharm')
 #   https://www.jetbrains.com/help/pycharm/에서 PyCharm 도움말 참조
 import discord
-import discord_set
+
+import mariadb
+import traceback
+import Errlog
 
 #  discord_token = discord_set.xzawed_token
-discord_token = discord_set.selmysql('TOKEN')
+discord_token = mariadb.selmysql('TOKEN',('DISCORD','XZAWED#7332'))
 
 #  discord Client class를 생성합니다.
 client = discord.Client()
@@ -69,6 +72,9 @@ async def scrabblepoints(ctx, arg):
     await ctx.send(points)
 
 '''
+mariadb.selmysql('TEMP', '실행')
+err = traceback.format_exc()
+Errlog.saveLog('INFO', str(err))
 
 # 위에서 설정한 client class를 token으로 인증하여 실행합니다.
 client.run(discord_token)

@@ -22,16 +22,30 @@ class MariaDB:
         #  self.curs = self.db.cursor()
 
     #  MariaDB 연결이후 SELECT, UPDATE, INSERT, DELETE 에 해당되는 내용을 호출처리
-    def tokenmysql(self):
+    def tempmysql(self, data):
+        sql = "SELECT %s RESULT;"
+        self.curs.execute(sql, data)
+        result = self.curs.fetchall()
+        for x in result:
+            message = x['RESULT']
+
+        print("정상적으로 "+message+" 되었습니다.")
+
+    #  MariaDB 연결이후 SELECT, UPDATE, INSERT, DELETE 에 해당되는 내용을 호출처리
+    def tokenmysql(self, data):
         sql = "SELECT TOKEN FROM BOT_TOKEN WHERE COMCD = %s AND BOT_ID = %s; "
-        self.curs.execute(sql,('DISCORD','XZAWED#7332'))
+        self.curs.execute(sql, data)
         token_list = self.curs.fetchall()
 
         for x in token_list:
-            #  print(x['TOKEN'])
             xzawed_token = x['TOKEN']
 
         return xzawed_token
+
+    def logmysql(self, data):
+        sql = "INSERT INTO BOT_LOG ( SEQ, WRITE_DATE, STATE, LOG, COMCD ) VALUES ( nextval(JOB_LOG_SEQ), SYSDATE(), %s, %s, 'DISCORD' ) "
+        self.curs.execute(sql, data)
+        self.db.commit()
 
     def closemysql(self):
         self.curs.close()
@@ -40,17 +54,18 @@ class MariaDB:
 
 ########################################################################################################################
 #  전역함수처리(외부에서 호출할때 쓰임)
-def selmysql(opt):
+def selmysql(opt, data):
         result = ""
-        MariaDB.sessionmysql(self=MariaDB)
+        MariaDB.sessionmysql(MariaDB)
 
-        if   opt == "TOKEN":
-            result = MariaDB.tokenmysql(self=MariaDB)
+        if   opt == "TEMP":
+            MariaDB.tempmysql(MariaDB, data)
+        elif opt == "TOKEN":
+            result = MariaDB.tokenmysql(MariaDB, data)
+        elif opt == "LOG":
+            MariaDB.logmysql(MariaDB, data)
 
-        MariaDB.closemysql(self=MariaDB)
+        MariaDB.closemysql(MariaDB)
 
         return result
 ########################################################################################################################
-
-#  discord에서는 token정보가 직접노출되면 난리침..다른 방법을 사용해야함.
-#  xzawed_token = "OTY1MTc5ODUyMzIxODgyMTMy.YlvbyA.TQETCCRsuwYCD-VAXioi7duDGeI"

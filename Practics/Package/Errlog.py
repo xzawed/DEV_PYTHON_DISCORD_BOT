@@ -1,7 +1,7 @@
 
 import logging # log기록
 
-import mysql
+import mariadb
 
 ########################################################################################################################
 #  전역변수
@@ -12,7 +12,7 @@ Log = logging.getLogger('DEV_PYTHON_DICORD_LOG')
 #  LogLevel = logging.ERROR
 LogFileName = './Practics/log/DEV_PYTHON_DISCORD_Log.log'
 #  LogFormat = logging.Formatter('[%(process)d | %(thread)d | %(levelname)s | %(filename)s:%(lineno)s] %(asctime)s: %(message)s')
-LogFormat = logging.Formatter('[%(process)d | %(thread)d | %(filename)s:%(lineno)s] %(asctime)s: %(message)s')
+LogFormat = logging.Formatter('DISCORD|[%(process)d | %(thread)d | %(filename)s:%(lineno)s] %(asctime)s: %(message)s')
 
 #  Console = 콘솔화면에 출력
 ConsoleHandler = logging.StreamHandler()
@@ -30,7 +30,7 @@ Log.addHandler(FileHandler)
 
 ########################################################################################################################
 #  호출부 구현
-def SaveLog(state,err):
+def saveLog(state,err):
     Log.error('MESSAGE : '+str(err))
-    mysql.selmysql('LOG', (state, str(err)))
+    mariadb.selmysql('LOG', (state, str(err)))
 ########################################################################################################################
