@@ -13,7 +13,6 @@ import asyncio, discord
 from discord.ext import commands
 
 import mariadb
-import traceback
 import Errlog
 
 discord_token = mariadb.selmysql('TOKEN',('DISCORD','XZAWED#7332'))
@@ -70,9 +69,7 @@ async def on_command_error(ctx, error):
 # 위에서 설정한 client class를 token으로 인증하여 실행합니다.
 try:
     mariadb.selmysql('TEMP', '실행')
-    err = traceback.format_exc()
-    Errlog.saveLog('INFO', str(err))
+    Errlog.saveLog('INFO')
     bot.run(discord_token)
 except Exception :
-    err = traceback.format_exc()
-    Errlog.saveLog('ERROR', str(err))
+    Errlog.saveLog('ERROR')

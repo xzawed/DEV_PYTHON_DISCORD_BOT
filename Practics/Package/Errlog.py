@@ -2,6 +2,7 @@
 import logging # log기록
 
 import mariadb
+import traceback
 
 ########################################################################################################################
 #  전역변수
@@ -30,7 +31,11 @@ Log.addHandler(FileHandler)
 
 ########################################################################################################################
 #  호출부 구현
-def saveLog(state,err):
-    Log.error('MESSAGE : '+str(err))
+def saveLog(state):
+    err = traceback.format_exc()
+    if   state == "INFO":
+        Log.info('MESSAGE : ' + str(err))
+    elif state == "ERROR":
+        Log.error('MESSAGE : '+ str(err))
     mariadb.selmysql('LOG', (state, str(err)))
 ########################################################################################################################
