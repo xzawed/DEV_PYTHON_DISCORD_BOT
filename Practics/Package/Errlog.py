@@ -1,13 +1,15 @@
 #  log 기록
 import logging
 
-from mariadb import *
-
 import traceback
+
+import mariadb
+
 
 ########################################################################################################################
 #  전역 변수
 #  log 설정
+
 Log = logging.getLogger('DEV_PYTHON_DICORD_LOG')
 
 #  log Format
@@ -43,7 +45,7 @@ def savelog(state):
     elif state == "ERROR":
         Log.error('MESSAGE : ' + str(err))
 
-    db = MYSQL
+    db = mariadb.MYSQL
     db.selmysql(self=db, opt='LOG', data=(state, str(err)))
     print(state + " : " + str(err))
 

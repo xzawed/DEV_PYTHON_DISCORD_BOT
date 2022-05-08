@@ -12,11 +12,11 @@
 #  import asyncio, discord
 from discord.ext import commands
 
-from mariadb import *
+import mariadb
 
 import Errlog
 
-db = MYSQL
+db = mariadb.MYSQL
 discord_token = db.selmysql(self=db, opt='TOKEN', data=('DISCORD', 'XZAWED#7332'))
 
 bot = commands.Bot(command_prefix="!")
